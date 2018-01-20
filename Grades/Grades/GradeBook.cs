@@ -6,19 +6,39 @@ using System.Threading.Tasks;
 
 namespace Grades
 {
-    class GradeBook
+    public class GradeBook
     {
+        List<float> grades;
+
+        public GradeBook()
+        {
+            grades = new List<float>();
+        }
 
         public void AddGrade(float grade)
         {
             grades.Add(grade);
         }
-
-        List<float> grades = new List<float>();
-
+        
         public List<float> getAllGrades()
         {
             return grades;
+        }
+
+        public GradeStatistics ComputeGradeStatistics()
+        {
+            GradeStatistics stats = new GradeStatistics();
+
+            float sum = 0;
+            foreach(float grade in grades)
+            {
+                stats.HighestGrade = Math.Max(stats.HighestGrade, grade);
+                stats.LowestGrade = Math.Min(stats.LowestGrade, grade);
+                sum += grade;
+            }
+            stats.AverageGrade = sum / grades.Count;
+
+            return stats;
         }
     }
 
