@@ -11,6 +11,10 @@ namespace Grades
         static void Main(string[] args)
         {
             Console.WriteLine("Hej");
+            GradeBook book1 = new GradeBook();
+            book1.AddGrade(22f);
+            List<float> allGrades = book1.getAllGrades();
+            Console.WriteLine(allGrades.First());
         }
     }
 }
